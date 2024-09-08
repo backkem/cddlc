@@ -135,7 +135,7 @@ func generateFile(cCtx *cli.Context, pkgName, filepath, outPath string) error {
 		}
 		return errors.New("parser failed with errors above")
 	}
-
+	println(cddl.String())
 	gen.Visit(cddl)
 
 	err = addBuildHeader(out)

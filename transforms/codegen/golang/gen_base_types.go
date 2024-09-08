@@ -28,18 +28,24 @@ func (g *Generator) transpileNullType(nt *ast.NullType) *gast.Ident {
 
 func (g *Generator) transpileIntegerType(it *ast.IntegerType) *gast.Ident {
 	return &gast.Ident{
-		Name: "int",
+		Name: "int64",
 	}
 }
 
 func (g *Generator) transpileUintType(it *ast.UintType) *gast.Ident {
 	return &gast.Ident{
-		Name: "uint",
+		Name: "uint64",
 	}
 }
 
 func (g *Generator) transpileBoolType(bt *ast.BooleanType) *gast.Ident {
 	return &gast.Ident{
 		Name: "bool",
+	}
+}
+
+func (g *Generator) transpileFloatType(fl *ast.FloatType) *gast.Ident {
+	return &gast.Ident{
+		Name: "float64",
 	}
 }

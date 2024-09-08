@@ -8,6 +8,8 @@ import (
 	"go/format"
 	"go/token"
 	"io"
+
+	"github.com/HannesKimara/cddlc/ast"
 )
 
 const (
@@ -62,8 +64,18 @@ type Generator struct {
 	// structures []*structure
 	imports []*gast.ImportSpec
 
+	typePrefix string
+
+	currentGroupType ast.GroupType
+	currentGroupName string
+
 	file *gast.File
 	fset *token.FileSet
+}
+
+// Adds a declaration to the file
+func (g *Generator) appendDecl(decl gast.Decl) {
+	g.file.Decls = append(g.file.Decls, decl)
 }
 
 // String flushes the generated tree to an output
@@ -118,9 +130,10 @@ func NewGenerator(pkgName string) *Generator {
 	}
 
 	gen := &Generator{
-		pkg:  pkgName,
-		file: file,
-		fset: fset,
+		pkg:        pkgName,
+		file:       file,
+		fset:       fset,
+		typePrefix: "msg",
 	}
 
 	return gen

@@ -543,7 +543,7 @@ func (p *Parser) parseSizeOperator(left ast.Node) (ast.Node, errors.Diagnostic) 
 	}
 
 	switch val := left.(type) {
-	case *ast.BstrType, *ast.UintType, *ast.TstrType:
+	case *ast.BstrType, *ast.UintType, *ast.TstrType, *ast.BytesType:
 		sop.Type = val
 	default:
 		err := p.errorUnsupportedTypes(sop.Pos, p.currliteral, token.TSTR, token.BSTR, token.UINT)
